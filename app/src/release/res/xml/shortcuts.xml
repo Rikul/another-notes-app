@@ -14,7 +14,7 @@
   limitations under the License.
   -->
 
-<!-- If changing this file don't forget to update its copy used for the release flavor. -->
+<!-- This file is just of copy of the other shortcuts.xml with the targetPackage updated for the release flavor. -->
 
 <shortcuts
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,7 +32,7 @@
         <intent
             android:action="com.maltaisn.notes.CREATE"
             android:targetClass="com.maltaisn.notes.ui.main.MainActivity"
-            android:targetPackage="com.maltaisn.notes"
+            android:targetPackage="com.maltaisn.notes.sync"
             >
             <extra
                 android:name="com.maltaisn.notes.NOTE_TYPE"
@@ -51,7 +51,7 @@
         <intent
             android:action="com.maltaisn.notes.CREATE"
             android:targetClass="com.maltaisn.notes.ui.main.MainActivity"
-            android:targetPackage="com.maltaisn.notes"
+            android:targetPackage="com.maltaisn.notes.sync"
             >
             <extra
                 android:name="com.maltaisn.notes.NOTE_TYPE"
@@ -70,7 +70,7 @@
         <intent
             android:action="com.maltaisn.notes.SHOW_REMINDERS"
             android:targetClass="com.maltaisn.notes.ui.main.MainActivity"
-            android:targetPackage="com.maltaisn.notes"
+            android:targetPackage="com.maltaisn.notes.sync"
             />
     </shortcut>
 
