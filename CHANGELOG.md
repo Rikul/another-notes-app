@@ -1,4 +1,5 @@
 ## v1.6.1 (TBD)
+- Allow reordering notes by dragging in archive and labels sections (#165).
 - Fixed app shortcuts not working (#166).
 
 ## v1.6.0 (2025-08-24)

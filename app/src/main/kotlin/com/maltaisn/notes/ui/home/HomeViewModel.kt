@@ -289,7 +289,9 @@ class HomeViewModel @Inject constructor(
     }
 
     override fun canDrag(item: NoteItem): Boolean {
-        return currentDestination == HomeDestination.Status(NoteStatus.ACTIVE) &&
+        return (currentDestination == HomeDestination.Status(NoteStatus.ACTIVE) ||
+                currentDestination == HomeDestination.Status(NoteStatus.ARCHIVED) ||
+                currentDestination is HomeDestination.Labels) &&
                 prefs.sortField == SortField.CUSTOM && item.note.id == selectedNotes.firstOrNull()?.id
     }
 
@@ -368,7 +370,7 @@ class HomeViewModel @Inject constructor(
         for (note in notes) {
             addNoteItem(note)
         }
-    }
+    }.toMutableList()
 
     private fun createDeletedListItems(notes: List<NoteWithLabels>) = buildList {
         // If needed, add reminder that notes get auto-deleted when in trash.
@@ -413,7 +415,7 @@ class HomeViewModel @Inject constructor(
             // Omit the filtered label from the note since all notes have it.
             addNoteItem(noteWithLabels, excludeLabel = label)
         }
-    }
+    }.toMutableList()
 
     private fun createRemindersListItems(notes: List<NoteWithLabels>) = buildList {
         val calendar = Calendar.getInstance()
