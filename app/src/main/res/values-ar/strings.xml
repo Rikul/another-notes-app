@@ -33,8 +33,8 @@
     <string name="action_empty_trash_short">إفراغ</string>
     <string name="action_keep">إبقاء</string>
     <string name="action_labels">التصنيفات</string>
-    <string name="action_layout_grid">عرض كمصفوفة</string>
-    <string name="action_layout_list">عرض كلائحة</string>
+    <string name="action_layout_grid">عرض كشبكة</string>
+    <string name="action_layout_list">عرض كقائمة</string>
     <string name="action_manage">إدارة</string>
     <string name="action_mark_as_done">اعتباره مكتمل</string>
     <string name="action_none">لا شيء</string>
@@ -42,14 +42,16 @@
     <string name="action_open">افتح</string>
     <string name="action_pin">تثبيت</string>
     <string name="action_postpone">تأجيل</string>
+    <string name="action_redo">إعادة</string>
     <string name="action_reminder_add">إضافة تذكير</string>
-    <string name="action_reminder_edit">تحرير التذكير</string>
+    <string name="action_reminder_edit">تعديل التذكير</string>
     <string name="action_rename">تحرير</string>
     <string name="action_restore">استعادة</string>
     <string name="action_search">بحث</string>
     <string name="action_select_all">تحديد الكل</string>
     <string name="action_settings">الإعدادات والمعلومات</string>
     <string name="action_share">مشاركة</string>
+    <string name="action_sort_items">ترتيب العناصر أبجديًا</string>
     <string name="action_unarchive">إعاده من المؤرشفة</string>
     <string name="action_uncheck_all">إلغاء تأشير كل العناصر</string>
     <string name="action_undo">تراجع</string>
@@ -71,7 +73,7 @@
     <string name="note_not_pinned">الأخرى</string>
     <string name="note_placeholder_active">ليس لديك أي ملاحظة.\nانقر على + لإضافة واحدة.</string>
     <string name="note_placeholder_archived">لا توجد ملاحظات مؤرشفة</string>
-    <string name="note_placeholder_deleted">سلة المهملات فارغة</string>
+    <string name="note_placeholder_deleted">المهملات فارغة</string>
     <plurals name="note_list_item_info">
         <item quantity="zero">لا شيء</item>
         <item quantity="one">+ %d من العناصر الأخرى للقائمة</item>
@@ -106,11 +108,12 @@
     <string name="sort_field_created">تاريخ الإنشاء</string>
     <string name="sort_field_modified">تاريخ التعديل</string>
     <string name="sort_field_title">أبجدية العنوان</string>
+    <string name="sort_field_custom">يدوي</string>
     <!-- Edit -->
     <string name="edit_add_title">إنشاء ملاحظة</string>
     <string name="edit_change_title">تحرير الملاحظة</string>
     <string name="edit_hint_note_title">العنوان</string>
-    <string name="edit_hint_note_content">ملاحظة</string>
+    <string name="edit_hint_note_content">المحتوى</string>
     <string name="edit_hint_note_item">عنصر قائمة</string>
     <string name="edit_message_blank_note_discarded">تم تجاهل ملاحظة فارغة.</string>
     <plurals name="edit_move_archive_message">
@@ -145,7 +148,7 @@
         <item quantity="many">تمت إعادة الملاحظات من المؤرشفة.</item>
         <item quantity="other">تمت إعادة الملاحظات من المؤرشفة.</item>
     </plurals>
-    <string name="edit_in_trash_message">لا يمكن التعديل في سلة المهملات.</string>
+    <string name="edit_in_trash_message">لا يمكن تعديل الملاحظة في المهملات.</string>
     <string name="edit_copy_suffix">منسوخة</string>
     <string name="edit_copy_untitled_name">بلا عنوان</string>
     <string name="edit_convert_keep_checked">حذف العناصر المؤشَرة؟</string>
@@ -201,26 +204,30 @@
     <string name="pref_theme_dark">داكن</string>
     <string name="pref_theme_system">تبعًا للنظام</string>
     <string name="pref_dynamic_colors">استخدام الألوان الديناميكية</string>
-    <string name="pref_strikethrough_checked">عنصر القائمة المؤشَر يتوسطه خط</string>
+    <string name="pref_strikethrough_checked">شطب عنصر القائمة المؤشَر</string>
+    <string name="pref_text_size">حجم النص في المحرر</string>
     <string name="pref_preview_labels">عدد التصنيفات أسفل المعاينات</string>
     <string name="pref_shown_date">تاريخ الملاحظة</string>
     <string name="pref_shown_date_added">تاريخ الإنشاء</string>
     <string name="pref_shown_date_modified">تاريخ آخر تعديل</string>
     <string name="pref_shown_date_none">بدون عرض</string>
+    <string name="pref_deleted_notes_timeout_title">حذف الملاحظات من المهملات بعد</string>
     <string name="pref_deleted_notes_timeout_day">24 ساعة</string>
     <string name="pref_deleted_notes_timeout_week">7 أيام</string>
     <string name="pref_deleted_notes_timeout_month">30 يوماً</string>
     <string name="pref_deleted_notes_timeout_year">سنة واحدة</string>
     <string name="pref_preview_lines">عدد الأسطر في المعاينات</string>
     <string name="pref_preview_lines_summary">ضبط عدد الأسطر، 
-        لكل نمط ونوع ملاحظة</string>
-    <string name="pref_preview_lines_grid_layout">نمط المصفوفة</string>
-    <string name="pref_preview_lines_list_layout">نمط اللائحة</string>
+        لكل تخطيط ونوع ملاحظة</string>
+    <string name="pref_preview_lines_grid_layout">تخطيط الشبكة</string>
+    <string name="pref_preview_lines_list_layout">تخطيط القائمة</string>
     <string name="pref_preview_lines_text">معاينة ملاحظة نصية</string>
     <string name="pref_preview_lines_list">معاينة ملاحظة قائمة</string>
-    <string name="pref_group_behavior">السلوك</string>
+    <string name="pref_group_behavior">الإجراءات</string>
     <string name="pref_behavior_swipe_action_left">إجراء سحب لليسار</string>
     <string name="pref_behavior_swipe_action_right">إجراء سحب لليمين</string>
+    <string name="pref_behavior_mark_as_done_action">الإجراء عند اعتبار التذكير مكتمل</string>
+    <string name="pref_behavior_edit_initial_focus">الموضع الافتراضي للمؤشر</string>
     <string name="pref_behavior_move_checked">تحريك العناصر المؤشَرة للأسفل</string>
     <string name="pref_group_data">البيانات</string>
     <string name="pref_data_export">تصدير البيانات</string>
@@ -233,6 +240,8 @@
     <string name="pref_data_auto_export_date">(تم التصدير في %s)</string>
     <string name="pref_data_import">استيراد البيانات</string>
     <string name="pref_data_import_summary">استيراد بيانات JSON المصدّرة مسبقًا، ودمجها مع البيانات الحالية.</string>
+    <string name="pref_data_export_archive">تصدير أرشيف الملاحظات</string>
+    <string name="pref_data_export_archive_summary">تصدير الملاحظات كأرشيف ZIP مضغوط (ليس تلقائيًا ولا مشفرًا).</string>
     <string name="pref_data_clear">محو كافة البيانات</string>
     <string name="pref_data_clear_confirm_message">سيتم محو جميع بيانات الملاحظات بشكل دائم!
         لا يمكن التراجع عن ذلك.</string>
@@ -255,8 +264,8 @@
     <string name="encrypted_export_key_generation_successful">تم التشفير بنجاح!</string>
     <string name="encrypted_export_key_deletion_successful">تعطل التشفير بنجاح!</string>
     <string name="import_success">تم استيراد البيانات بنجاح!</string>
-    <string name="import_future_version">تم استيراد البيانات بنجاح! ويلاحظ أن بعض المعلومات ربما
-        قد فقدت؛ ذلك لأن البيانات تُنشأ من إصدار لاحق.</string>
+    <string name="import_future_version">تم استيراد البيانات بنجاح! يُرجى العلم أن بعض المعلومات ربما
+         قد فُقدت؛ لأن البيانات مصدرها إصدار أحدث.</string>
     <string name="import_bad_input">حدث خطأ أثناء محاولة قراءة هذا الملف.</string>
     <string name="import_bad_format">تعذرت عملية الاستيراد؛ بيانات الـ JSON غير صالحة.</string>
     <string name="import_bad_data">تعذر استيراد البيانات، بعض الحقول لديها قيم غير صالحة.

@@ -1,5 +1,1 @@
-- Boutons pour annuler et rétablir lors de l'édition.
-- Ajout d'un mode de tri permettant de réorganiser les notes en les glissant.
-- Ajout d'une option pour changer la taille du texte.
-- Ajout d'une option pour exporter un fichier ZIP avec les notes.
-- Plusieurs bugs corrigés et autres améliorations mineures.
+- Correction de bugs mineurs
