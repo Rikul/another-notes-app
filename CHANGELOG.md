@@ -1,4 +1,4 @@
-## v1.6.1 (TBD)
+## v1.6.1 (2025-09-12)
 - Allow reordering notes by dragging in archive and labels sections (#165).
 - Fixed app shortcuts not working (#166).
 - Fixed notifications not working on some Sony devices (#163).
