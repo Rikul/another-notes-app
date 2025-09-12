@@ -1,5 +1,5 @@
 <!--
-  Copyright 2022 Nicolas Maltais
+  Copyright 2025 Nicolas Maltais
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -14,10 +14,12 @@
   limitations under the License.
   -->
 
+<!-- Note: this icon isn't tinted unlike the other ones because it causes a crash when used as
+     the notification small icon on Sony devices. See #163. I expected this a library bug (androidx core). -->
+
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:height="24dp"
-    android:tint="?colorControlNormal"
     android:viewportHeight="6.35"
     android:viewportWidth="6.35"
     android:width="24dp"
