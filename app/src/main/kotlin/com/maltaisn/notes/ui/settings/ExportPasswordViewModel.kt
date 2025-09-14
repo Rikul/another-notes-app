@@ -62,8 +62,8 @@ class ExportPasswordViewModel @Inject constructor(
 
     fun onPasswordChanged(password: String, passwordRepeat: String) {
         // Check if passwords match. Also don't allow empty passwords
-        _passwordValid.value = (password == passwordRepeat) && password.isNotEmpty()
-        _passwordRepeatErrorShown.value = password != passwordRepeat
+        _passwordValid.value = password == passwordRepeat && password.isNotEmpty()
+        _passwordRepeatErrorShown.value = password != passwordRepeat && passwordRepeat.isNotEmpty()
         this.password = password
         this.passwordRepeat = passwordRepeat
     }
