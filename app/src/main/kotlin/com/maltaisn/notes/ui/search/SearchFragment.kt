@@ -18,6 +18,7 @@ package com.maltaisn.notes.ui.search
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.SimpleItemAnimator
 import com.maltaisn.notes.R
 import com.maltaisn.notes.hideKeyboard
 import com.maltaisn.notes.setEnterExitTransitions
+import com.maltaisn.notes.setIconsLayoutDirection
 import com.maltaisn.notes.showKeyboard
 import com.maltaisn.notes.ui.note.NoteFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,6 +57,18 @@ class SearchFragment : NoteFragment() {
                 view.hideKeyboard()
                 navController.popBackStack()
             }
+
+            viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                private var directionSet = false
+
+                override fun onPreDraw(): Boolean {
+                    if (!directionSet) {
+                        menu.setIconsLayoutDirection(view.layoutDirection)
+                        directionSet = true
+                    }
+                    return true
+                }
+            })
         }
 
         binding.fab.isVisible = false

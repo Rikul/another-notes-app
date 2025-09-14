@@ -26,6 +26,7 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewTreeObserver
 import androidx.activity.addCallback
 import androidx.appcompat.widget.Toolbar
 import androidx.core.net.toUri
@@ -51,6 +52,7 @@ import com.maltaisn.notes.databinding.FragmentEditBinding
 import com.maltaisn.notes.hideKeyboard
 import com.maltaisn.notes.model.entity.NoteType
 import com.maltaisn.notes.navigateSafe
+import com.maltaisn.notes.setIconsLayoutDirection
 import com.maltaisn.notes.ui.SharedViewModel
 import com.maltaisn.notes.ui.common.ConfirmDialog
 import com.maltaisn.notes.ui.edit.actions.EditAction
@@ -138,6 +140,18 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
                 viewModel.saveNote()
                 viewModel.exit()
             }
+
+            viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                private var directionSet = false
+
+                override fun onPreDraw(): Boolean {
+                    if (!directionSet) {
+                        menu.setIconsLayoutDirection(view.layoutDirection)
+                        directionSet = true
+                    }
+                    return true
+                }
+            })
         }
 
         // Recycler view

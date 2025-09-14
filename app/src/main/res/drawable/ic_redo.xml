@@ -1,5 +1,5 @@
 <!--
-  Copyright 2022 Nicolas Maltais
+  Copyright 2025 Nicolas Maltais
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@
 
 <vector
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:autoMirrored="true"
     android:viewportHeight="24"
     android:viewportWidth="24"
     android:width="24dp"

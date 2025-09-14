@@ -24,6 +24,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
@@ -40,6 +41,7 @@ import com.maltaisn.notes.NavGraphMainDirections
 import com.maltaisn.notes.R
 import com.maltaisn.notes.model.entity.NoteStatus
 import com.maltaisn.notes.navigateSafe
+import com.maltaisn.notes.setIconsLayoutDirection
 import com.maltaisn.notes.ui.common.ConfirmDialog
 import com.maltaisn.notes.ui.navigation.HomeDestination
 import com.maltaisn.notes.ui.note.NoteFragment
@@ -106,6 +108,20 @@ class HomeFragment : NoteFragment(), Toolbar.OnMenuItemClickListener {
 
             // Hide or show build type and flavor specific items
             menu.findItem(R.id.item_extra_action).isVisible = BuildConfig.ENABLE_DEBUG_FEATURES
+
+            // This observer is needed because the layout direction isn't actually set before the view is attached.
+            // See https://stackoverflow.com/a/48282355. The same goes for all the other fragments with a toolbar.
+            viewTreeObserver.addOnPreDrawListener(object : ViewTreeObserver.OnPreDrawListener {
+                private var directionSet = false
+
+                override fun onPreDraw(): Boolean {
+                    if (!directionSet) {
+                        menu.setIconsLayoutDirection(view.layoutDirection)
+                        directionSet = true
+                    }
+                    return true
+                }
+            })
         }
 
         // Floating action button

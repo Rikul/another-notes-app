@@ -53,6 +53,7 @@ import com.maltaisn.notes.model.entity.NoteStatus
 import com.maltaisn.notes.model.entity.PinnedStatus
 import com.maltaisn.notes.navigateSafe
 import com.maltaisn.notes.setEnterExitTransitions
+import com.maltaisn.notes.setIconsLayoutDirection
 import com.maltaisn.notes.switchStatusBarColor
 import com.maltaisn.notes.ui.SharedViewModel
 import com.maltaisn.notes.ui.StatusChange
@@ -461,6 +462,7 @@ abstract class NoteFragment : Fragment(), ActionMode.Callback, ConfirmDialog.Cal
 
     override fun onCreateActionMode(mode: ActionMode, menu: Menu): Boolean {
         requireActivity().menuInflater.inflate(R.menu.cab_note_selection, menu)
+        menu.setIconsLayoutDirection(requireView().layoutDirection)
         switchStatusBarColor(
             (binding.toolbarLayout.background as MaterialShapeDrawable).resolvedTintColor,
             MaterialColors.getColor(requireView(), RMaterial.attr.colorSurfaceVariant),

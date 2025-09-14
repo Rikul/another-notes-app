@@ -20,8 +20,11 @@ import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.graphics.Color
 import android.os.Build
+import android.view.Menu
 import androidx.annotation.ColorInt
 import androidx.core.animation.addListener
+import androidx.core.view.get
+import androidx.core.view.size
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.transition.MaterialElevationScale
@@ -83,5 +86,14 @@ fun Fragment.setEnterExitTransitions() {
     }
     exitTransition = MaterialElevationScale(true).apply {
         duration = resources.getInteger(RMaterial.integer.material_motion_duration_short_2).toLong()
+    }
+}
+
+fun Menu.setIconsLayoutDirection(direction: Int) {
+    if (Build.VERSION.SDK_INT >= 23) {
+        // For some reason inflating a menu doesn't do that automatically...
+        for (i in 0..<size) {
+            this[i].icon?.setLayoutDirection(direction)
+        }
     }
 }

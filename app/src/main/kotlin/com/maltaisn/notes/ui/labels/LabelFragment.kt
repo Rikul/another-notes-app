@@ -38,6 +38,7 @@ import com.maltaisn.notes.R
 import com.maltaisn.notes.databinding.FragmentLabelBinding
 import com.maltaisn.notes.navigateSafe
 import com.maltaisn.notes.setEnterExitTransitions
+import com.maltaisn.notes.setIconsLayoutDirection
 import com.maltaisn.notes.switchStatusBarColor
 import com.maltaisn.notes.ui.SharedViewModel
 import com.maltaisn.notes.ui.common.ConfirmDialog
@@ -91,6 +92,7 @@ class LabelFragment : DialogFragment(), Toolbar.OnMenuItemClickListener,
         viewModel.start(args.noteIds.toList())
 
         binding.toolbar.apply {
+            menu.setIconsLayoutDirection(view.layoutDirection)
             setOnMenuItemClickListener(this@LabelFragment)
             setNavigationIcon(R.drawable.ic_arrow_start)
             setNavigationOnClickListener {

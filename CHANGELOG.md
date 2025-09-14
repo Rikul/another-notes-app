@@ -1,3 +1,6 @@
+## v1.6.2 (TBD)
+- Fixed orientation of some icons in RTL layout (#167)
+
 ## v1.6.1 (2025-09-12)
 - Allow reordering notes by dragging in archive and labels sections (#165).
 - Fixed app shortcuts not working (#166).
