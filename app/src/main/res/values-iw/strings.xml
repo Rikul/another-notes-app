@@ -42,6 +42,7 @@
     <string name="action_open">פתח</string>
     <string name="action_pin">נעץ</string>
     <string name="action_postpone">דחה</string>
+    <string name="action_redo">בצע שוב</string>
     <string name="action_reminder_add">הוסף תזכורת</string>
     <string name="action_reminder_edit">ערוך תזכורת</string>
     <string name="action_rename">שנה שם</string>
@@ -50,6 +51,7 @@
     <string name="action_select_all">בחר הכל</string>
     <string name="action_settings">הגדרות</string>
     <string name="action_share">שתף</string>
+    <string name="action_sort_items">מיין לפי א-ב</string>
     <string name="action_unarchive">הוצא מהארכיון</string>
     <string name="action_uncheck_all">בטל סימון הכל</string>
     <string name="action_undo">בטל</string>
@@ -101,6 +103,7 @@
     <string name="sort_field_created">תאריך יצירה</string>
     <string name="sort_field_modified">תאריך עדכון</string>
     <string name="sort_field_title">כותרת</string>
+    <string name="sort_field_custom">מותאם אישית</string>
     <!-- Edit -->
     <string name="edit_add_title">צור פתק</string>
     <string name="edit_change_title">ערוך פתק</string>
@@ -178,6 +181,7 @@
     <string name="pref_theme_system">עיצוב מערכת</string>
     <string name="pref_dynamic_colors">השתמש בצבעים דינמיים</string>
     <string name="pref_strikethrough_checked">קו חוצה לפריטים שסומנו</string>
+    <string name="pref_text_size">גודל טקסט לעריכה</string>
     <string name="pref_preview_labels">מספר מקסימלי של תוויות בתצוגה מקדימה</string>
     <string name="pref_shown_date">תאריך המוצג עבור פתקים</string>
     <string name="pref_shown_date_added">תאריך יצירה</string>
@@ -197,6 +201,8 @@
     <string name="pref_group_behavior">התנהגות</string>
     <string name="pref_behavior_swipe_action_left">פעולת החלקה שמאלה</string>
     <string name="pref_behavior_swipe_action_right">פעולת החלקה ימינה</string>
+    <string name="pref_behavior_mark_as_done_action">סמן פעולה כהושלמה</string>
+    <string name="pref_behavior_edit_initial_focus">מיקוד ראשוני בהערה חדשה</string>
     <string name="pref_behavior_move_checked">העבר פריטים שסומנו לתחתית</string>
     <string name="pref_group_data">נתונים</string>
     <string name="pref_data_export">ייצא נתונים</string>
@@ -208,6 +214,8 @@
     <string name="pref_data_auto_export_date">(נשמר לאחרונה ב־%s)</string>
     <string name="pref_data_import">ייבא נתונים</string>
     <string name="pref_data_import_summary">ייבא נתוני JSON שיוצאו קודם, במיזוג עם הנתונים הקיימים.</string>
+    <string name="pref_data_export_archive">ייצא ארכיון הערות</string>
+    <string name="pref_data_export_archive_summary">ייצא הערות כארכיון ZIP (לא אוטומטי או מוצפן).</string>
     <string name="pref_data_clear">נקה את כל הנתונים</string>
     <string name="pref_data_clear_confirm_message">כל נתוני הפתקים יימחקו לצמיתות! אין אפשרות לבטל.</string>
     <string name="pref_data_clear_success_message">כל הנתונים נמחקו בהצלחה.</string>
@@ -244,5 +252,20 @@
     <string name="date_rel_today">היום, %s</string>
     <string name="date_rel_yesterday">אתמול, %s</string>
     <string name="date_rel_tomorrow">מחר, %s</string>
+    <plurals name="date_rel_days_past">
+        <item quantity="one">לפני %d ימים, %s</item>
+        <item quantity="two">לפני %d ימים, %s</item>
+        <item quantity="many">לפני %d ימים, %s</item>
+        <!-- used with quantity >= 2, format values: number of days, time -->
+        <item quantity="other">לפני %d ימים, %s</item>
+    </plurals>
+    <plurals name="date_rel_days_future">
+        <item quantity="one">בעוד %d ימים, %s</item>
+        <item quantity="two">בעוד %d ימים, %s</item>
+        <item quantity="many">בעוד %d ימים, %s</item>
+        <!-- used with quantity >= 2, format values: number of days, time -->
+        <item quantity="other">בעוד %d ימים, %s</item>
+    </plurals>
     <!-- format values: date, time -->
+    <string name="date_rel_absolute">%1$s, %2$s</string>
 </resources>
