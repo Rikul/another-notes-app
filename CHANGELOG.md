@@ -1,5 +1,7 @@
-## v1.6.2 (TBD)
+## v1.6.2 (2025-11-30)
 - Fixed orientation of some icons in RTL layout (#167)
+- Don't show error in password dialog if repeat is empty (#168)
+- Updated Hebrew translation (@AshiVered)
 
 ## v1.6.1 (2025-09-12)
 - Allow reordering notes by dragging in archive and labels sections (#165).

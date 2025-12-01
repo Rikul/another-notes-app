@@ -53,6 +53,7 @@ Contributions are welcome, especially translations (see [`TRANSLATING.md`][trans
     - Chinese: @Nriver
     - Dutch: Jeroen de Jong
     - German: @memyselfandi
+    - Hebrew: @AshiVered
     - Italian: carallo
     - Japanese: @kuragehimekurara1
     - Norwegian: @FTno
