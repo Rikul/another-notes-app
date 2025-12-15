@@ -21,6 +21,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+}
 
 // This shouldn't be necessary, it's supposed to be the default?
 dependencyResolutionManagement {
