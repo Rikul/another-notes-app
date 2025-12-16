@@ -148,7 +148,7 @@ dependencies {
     implementation(libs.navigation.hilt)
 
     // Debug
-    debugImplementation(libs.leakcanary.android)
+    //debugImplementation(libs.leakcanary.android)
     debugImplementation(libs.venom)
     releaseImplementation(libs.venom.noop)
 
