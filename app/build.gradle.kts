@@ -172,6 +172,8 @@ dependencies {
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.mockito.android)
     androidTestImplementation(libs.room.testing)
+    androidTestImplementation(libs.hilt.android.testing)
+    kspAndroidTest(libs.hilt.android.compiler)
     // For screenshots
     androidTestImplementation(libs.espresso)
     androidTestImplementation(libs.espresso.contrib)

@@ -23,6 +23,11 @@ lifecycle = "2.9.2"
 recurpicker = "2.1.7"
 
 dagger = "2.57"
+
+dagger-hilt-testing = "2.57"
+
+
+
 leakCanary = "2.14"
 venom = "0.7.1"
 
@@ -62,6 +67,7 @@ kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit"
 
 dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger" }
 dagger-hiltCompiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "dagger" }
+hilt-android-testing = { group = "com.google.dagger", name = "hilt-android-testing", version.ref = "dagger-hilt-testing" }
 
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
