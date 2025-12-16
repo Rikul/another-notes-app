@@ -46,7 +46,7 @@ android {
         versionCode = 10602
         versionName = "1.6.2"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.maltaisn.notes.HiltTestRunner"
     }
 
     buildFeatures {
