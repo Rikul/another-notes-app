@@ -59,11 +59,6 @@ android {
         generateLocaleConfig = true
     }
 
-    @Suppress("UnstableApiUsage")
-    testFixtures {
-        enable = true
-    }
-
     room {
         schemaDirectory("$projectDir/schemas")
     }
@@ -110,6 +105,16 @@ android {
         // see https://stackoverflow.com/questions/44342455
         resources.excludes.add("META-INF/*")
     }
+
+    // Add testFixtures sources to test compile classpath as a workaround
+    sourceSets {
+        getByName("test") {
+            java.srcDir("src/testFixtures/kotlin")
+        }
+        getByName("androidTest") {
+            java.srcDir("src/testFixtures/kotlin")
+        }
+    }
 }
 
 dependencies {
@@ -152,28 +157,34 @@ dependencies {
     debugImplementation(libs.venom)
     releaseImplementation(libs.venom.noop)
 
-    // Dependencies for shared test code
-    testFixturesApi(libs.junit)
-    testFixturesApi(libs.kotlin.test.junit)
-    testFixturesApi(libs.kotlin.coroutinesTest)
-    testFixturesApi(libs.mockito.kotlin)
-    testFixturesApi(libs.androidx.arch.coreTesting)
-    testFixturesApi(libs.androidx.test.core)
-    testFixturesApi(libs.androidx.test.coreKtx)
-    testFixturesApi(libs.androidx.test.junit)
-    testFixturesApi(libs.androidx.test.junitKtx)
-    testFixturesApi(libs.androidx.test.rules)
-
     // Dependencies for unit tests
-    testImplementation(testFixtures(project(":app")))
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.kotlin.coroutinesTest)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.androidx.arch.coreTesting)
+    testImplementation(libs.androidx.test.core)
+    testImplementation(libs.androidx.test.coreKtx)
+    testImplementation(libs.androidx.test.junit)
+    testImplementation(libs.androidx.test.junitKtx)
+    testImplementation(libs.androidx.test.rules)
 
     // Dependencies for android tests
-    androidTestImplementation(testFixtures(project(":app")))
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.kotlin.test.junit)
+    androidTestImplementation(libs.kotlin.coroutinesTest)
+    androidTestImplementation(libs.mockito.kotlin)
+    androidTestImplementation(libs.androidx.arch.coreTesting)
+    androidTestImplementation(libs.androidx.test.core)
+    androidTestImplementation(libs.androidx.test.coreKtx)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.junitKtx)
+    androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.mockito.android)
     androidTestImplementation(libs.room.testing)
     androidTestImplementation(libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.android.compiler)
+    kspAndroidTest(libs.dagger.hiltCompiler)
     // For screenshots
     androidTestImplementation(libs.espresso)
     androidTestImplementation(libs.espresso.contrib)
