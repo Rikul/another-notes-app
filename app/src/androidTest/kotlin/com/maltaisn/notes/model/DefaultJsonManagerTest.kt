@@ -624,4 +624,57 @@ class DefaultJsonManagerTest {
         """.trim().replace("\n", "")
         assertEquals(ImportResult.FUTURE_VERSION, jsonManager.importJsonData(jsonData2, importKey = key))
     }
+
+    @Test
+    fun testUnencryptedJsonExportImportWithColor() = runBlocking {
+        prefsManager.shouldEncryptExportedData = false
+        
+        // Insert notes with different colors
+        notesDao.insert(Note(id = 1,
+            type = NoteType.TEXT,
+            title = "Note Color 1",
+            content = "Content",
+            metadata = BlankNoteMetadata,
+            addedDate = dateFor("2023-01-01Z"),
+            lastModifiedDate = dateFor("2023-01-01Z"),
+            rank = FractionalIndex.INITIAL,
+            status = NoteStatus.ACTIVE,
+            pinned = PinnedStatus.UNPINNED,
+            reminder = null,
+            color = 1 // Color 1
+        ))
+        
+        notesDao.insert(Note(id = 2,
+            type = NoteType.TEXT,
+            title = "Note Color 4",
+            content = "Content",
+            metadata = BlankNoteMetadata,
+            addedDate = dateFor("2023-01-02Z"),
+            lastModifiedDate = dateFor("2023-01-02Z"),
+            rank = FractionalIndex.INITIAL,
+            status = NoteStatus.ACTIVE,
+            pinned = PinnedStatus.UNPINNED,
+            reminder = null,
+            color = 4 // Color 4
+        ))
+
+        // Export
+        val jsonData = jsonManager.exportJsonData()
+
+        // Clear database
+        notesDao.clear()
+        
+        // Import
+        assertEquals(ImportResult.SUCCESS, jsonManager.importJsonData(jsonData))
+
+        // Verify
+        val notes = notesDao.getAll()
+        assertEquals(2, notes.size)
+        
+        val note1 = notes.find { it.note.title == "Note Color 1" }?.note
+        val note2 = notes.find { it.note.title == "Note Color 4" }?.note
+        
+        assertEquals(1, note1?.color)
+        assertEquals(4, note2?.color)
+    }
 }
