@@ -101,6 +101,9 @@ class EditFragmentTest {
 
     @Test
     fun colorSelectionDialogShowsAllOptions() {
+        Thread.sleep(500)
+        onView(withId(R.id.fragment_edit_layout)).perform(closeSoftKeyboard())
+
         // Open the color selection dialog
         clickColorAction()
 
@@ -115,6 +118,9 @@ class EditFragmentTest {
 
     @Test
     fun selectingColorUpdatesEditorBackground() {
+        Thread.sleep(500)
+        onView(withId(R.id.fragment_edit_layout)).perform(closeSoftKeyboard())
+
         // Open the color selection dialog
         clickColorAction()
 
@@ -133,7 +139,8 @@ class EditFragmentTest {
     @Test
     fun selectingColorAndSavingUpdatesNoteInList() = runBlocking {
         // Wait for RecyclerView to be ready
-        Thread.sleep(200)
+        Thread.sleep(500)
+        onView(withId(R.id.fragment_edit_layout)).perform(closeSoftKeyboard())
 
         // Scroll to the title item (position 0) and click it to focus
         onView(withId(R.id.recycler_view))
@@ -178,11 +185,14 @@ class EditFragmentTest {
 
     @Test
     fun verifyLightModeColors() {
+
         // Force light theme
         InstrumentationRegistry.getInstrumentation().runOnMainSync {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         }
         //activityScenarioRule.scenario.recreate()
+
+        Thread.sleep(500)
 
         // Open the color selection dialog
         clickColorAction()
@@ -200,6 +210,8 @@ class EditFragmentTest {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         }
 
+        Thread.sleep(500)
+        
         // Open the color selection dialog
         clickColorAction()
 
@@ -211,8 +223,12 @@ class EditFragmentTest {
 
     @Test
     fun userCancelsColorSelection() {
+        Thread.sleep(500)
+        onView(withId(R.id.fragment_edit_layout)).perform(closeSoftKeyboard())
+
         // Get initial background color (should be default)
         val initialColor = ContextCompat.getColor(context, getNoteColorResource(0))
+
         onView(withId(R.id.fragment_edit_layout))
             .check(matches(withBackgroundColor(initialColor)))
 
@@ -228,11 +244,15 @@ class EditFragmentTest {
     }
 
     private fun clickColorAction() {
-        // Close soft keyboard to ensure toolbar is visible
-        onView(withId(R.id.fragment_edit_layout))
-            .perform(closeSoftKeyboard())
+        Thread.sleep(500)
 
-        Thread.sleep(200)
+        // Close soft keyboard to ensure toolbar is visible
+        try {
+            onView(withId(R.id.fragment_edit_layout))
+                .perform(closeSoftKeyboard())
+        } catch (e: androidx.test.espresso.PerformException) {
+            // Ignore if keyboard close fails due to animations
+        }
 
         onView(withContentDescription(R.string.action_color))
             .perform(click())
