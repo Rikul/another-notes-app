@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Remove the AlarmReceiver during tests to avoid Hilt injection issues -->
+    <application>
+        <receiver
+            android:name="com.maltaisn.notes.receiver.AlarmReceiver"
+            tools:node="remove" />
+    </application>
+
+</manifest>

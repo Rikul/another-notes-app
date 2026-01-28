@@ -188,6 +188,7 @@ dependencies {
     // For screenshots
     androidTestImplementation(libs.espresso)
     androidTestImplementation(libs.espresso.contrib)
+    androidTestImplementation(libs.espresso.intents)
 }
 
 tasks.named("build") {

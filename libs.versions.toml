@@ -103,6 +103,7 @@ mockito-android = { group = "org.mockito", name = "mockito-android", version.ref
 
 espresso = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 espresso-contrib = { group = "androidx.test.espresso", name = "espresso-contrib", version.ref = "espresso" }
+espresso-intents = { group = "androidx.test.espresso", name = "espresso-intents", version.ref = "espresso" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
