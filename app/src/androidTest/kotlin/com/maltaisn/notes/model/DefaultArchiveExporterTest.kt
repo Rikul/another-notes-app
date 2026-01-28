@@ -38,6 +38,7 @@ class DefaultArchiveExporterTest {
 
     private lateinit var database: NotesDatabase
     private lateinit var notesDao: NotesDao
+    private lateinit var attachmentsDao: AttachmentsDao
 
     private lateinit var archiveExporter: ArchiveExporter
 
@@ -46,7 +47,8 @@ class DefaultArchiveExporterTest {
         val context = ApplicationProvider.getApplicationContext<Context>()
         database = Room.inMemoryDatabaseBuilder(context, NotesDatabase::class.java).build()
         notesDao = database.notesDao()
-        archiveExporter = DefaultArchiveExporter(notesDao)
+        attachmentsDao = database.attachmentsDao()
+        archiveExporter = DefaultArchiveExporter(notesDao, attachmentsDao)
     }
 
     @After

@@ -25,6 +25,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.maltaisn.notes.dateFor
 import com.maltaisn.notes.model.JsonManager.ImportResult
+import com.maltaisn.notes.model.entity.Attachment
 import com.maltaisn.notes.model.entity.BlankNoteMetadata
 import com.maltaisn.notes.model.entity.FractionalIndex
 import com.maltaisn.notes.model.entity.Label
@@ -50,6 +51,7 @@ import org.mockito.kotlin.mock
 import java.security.KeyStore
 import javax.crypto.spec.SecretKeySpec
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 @RunWith(AndroidJUnit4::class)
 class DefaultJsonManagerTest {
@@ -57,6 +59,8 @@ class DefaultJsonManagerTest {
     private lateinit var database: NotesDatabase
     private lateinit var notesDao: NotesDao
     private lateinit var labelsDao: LabelsDao
+    private lateinit var attachmentsDao: AttachmentsDao
+    private lateinit var attachmentsRepository: AttachmentsRepository
 
     private lateinit var prefsManager: PrefsManager
     private lateinit var jsonManager: JsonManager
@@ -69,11 +73,13 @@ class DefaultJsonManagerTest {
         database = Room.inMemoryDatabaseBuilder(context, NotesDatabase::class.java).build()
         notesDao = database.notesDao()
         labelsDao = database.labelsDao()
+        attachmentsDao = database.attachmentsDao()
+        attachmentsRepository = DefaultAttachmentsRepository(attachmentsDao, context)
         prefsManager = mock {
             on { encryptedImportKeyDerivationSalt } doReturn "Wk7ITADlYDBTP/o8GtupJyWemvDClrDNxXKhoMBuTIp8QjlAlPdVAWfAi+B3GWTn/YmqgBP3OCK20Vmcm9hQbzwNfnXsnChnPu462ALv+WKf8y2NirINyWr5jG/tAOaE6bGNL+ZE4ClppTdBt82Gl87q6FX0pFqhJtmrE+8jLmI"
             on { encryptedExportKeyDerivationSalt } doReturn "Wk7ITADlYDBTP/o8GtupJyWemvDClrDNxXKhoMBuTIp8QjlAlPdVAWfAi+B3GWTn/YmqgBP3OCK20Vmcm9hQbzwNfnXsnChnPu462ALv+WKf8y2NirINyWr5jG/tAOaE6bGNL+ZE4ClppTdBt82Gl87q6FX0pFqhJtmrE+8jLmI"
         }
-        jsonManager = DefaultJsonManager(notesDao, labelsDao, Json {
+        jsonManager = DefaultJsonManager(notesDao, labelsDao, attachmentsDao, attachmentsRepository, Json {
             encodeDefaults = false
             ignoreUnknownKeys = true
         }, mock(), prefsManager)

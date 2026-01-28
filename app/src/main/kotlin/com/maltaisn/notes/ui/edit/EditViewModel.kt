@@ -212,6 +212,10 @@ class EditViewModel @Inject constructor(
     val showLabelsFragmentEvent: LiveData<Event<Long>>
         get() = _showLabelsFragmentEvent
 
+    private val _showAttachmentsFragmentEvent = MutableLiveData<Event<Long>>()
+    val showAttachmentsFragmentEvent: LiveData<Event<Long>>
+        get() = _showAttachmentsFragmentEvent
+
     private val _showLinkDialogEvent = MutableLiveData<Event<String>>()
     val showLinkDialogEvent: LiveData<Event<String>>
         get() = _showLinkDialogEvent
@@ -433,6 +437,7 @@ class EditViewModel @Inject constructor(
             uncheckAll = EditActionAvailability.fromBoolean(isList && anyChecked && !inTrash),
             deleteChecked = EditActionAvailability.fromBoolean(isList && anyChecked && !inTrash),
             sortItems = EditActionAvailability.fromBoolean(isList && moreThanOneItem && !inTrash),
+            attachments = EditActionAvailability.fromBoolean(!inTrash),
         )
         if (visibility != editActionsAvailability.value) {
             _editActionsAvailability.value = visibility
@@ -573,6 +578,10 @@ class EditViewModel @Inject constructor(
 
     fun changeLabels() {
         _showLabelsFragmentEvent.send(note.id)
+    }
+
+    fun openAttachments() {
+        _showAttachmentsFragmentEvent.send(note.id)
     }
 
     fun changeColor() {

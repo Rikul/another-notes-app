@@ -16,6 +16,8 @@
 
 package com.maltaisn.notes.model
 
+import android.util.Base64
+import java.io.File
 import java.io.OutputStream
 import java.text.Normalizer
 import java.util.zip.ZipEntry
@@ -24,6 +26,7 @@ import javax.inject.Inject
 
 class DefaultArchiveExporter @Inject constructor(
     private val notesDao: NotesDao,
+    private val attachmentsDao: AttachmentsDao,
 ) : ArchiveExporter {
 
     private fun sanitizeFileName(name: String, untitledName: String): String {
@@ -61,10 +64,29 @@ class DefaultArchiveExporter @Inject constructor(
             val name = getUniqueName(baseName, usedNames)
             usedNames.add(name)
 
+            // Add note text file
             val entry = ZipEntry("$name.txt")
             zipOut.putNextEntry(entry)
             zipOut.write(note.note.asText(includeTitle = false).toByteArray(Charsets.UTF_8))
             zipOut.closeEntry()
+
+            // Add attachments for this note
+            val attachments = attachmentsDao.getByNoteIdSync(note.note.id)
+            if (attachments.isNotEmpty()) {
+                for ((index, attachment) in attachments.withIndex()) {
+                    val attachmentName = if (attachments.size == 1) {
+                        "$name - ${attachment.filename}"
+                    } else {
+                        "$name - ${index + 1} - ${attachment.filename}"
+                    }
+                    val attachmentEntry = ZipEntry(attachmentName)
+                    zipOut.putNextEntry(attachmentEntry)
+                    // Decode base64 data and write to ZIP
+                    val fileData = Base64.decode(attachment.data, Base64.NO_WRAP)
+                    zipOut.write(fileData)
+                    zipOut.closeEntry()
+                }
+            }
         }
 
         zipOut.close()

@@ -28,6 +28,7 @@ import com.maltaisn.notes.model.converter.NoteStatusConverter
 import com.maltaisn.notes.model.converter.NoteTypeConverter
 import com.maltaisn.notes.model.converter.PinnedStatusConverter
 import com.maltaisn.notes.model.converter.RecurrenceConverter
+import com.maltaisn.notes.model.entity.Attachment
 import com.maltaisn.notes.model.entity.FractionalIndex
 import com.maltaisn.notes.model.entity.Label
 import com.maltaisn.notes.model.entity.LabelRef
@@ -40,6 +41,7 @@ import com.maltaisn.notes.model.entity.NoteFts
         NoteFts::class,
         Label::class,
         LabelRef::class,
+        Attachment::class,
     ],
     version = NotesDatabase.VERSION)
 @TypeConverters(
@@ -57,9 +59,11 @@ abstract class NotesDatabase : RoomDatabase() {
 
     abstract fun labelsDao(): LabelsDao
 
+    abstract fun attachmentsDao(): AttachmentsDao
+
     @Suppress("MagicNumber")
     companion object {
-        const val VERSION = 6
+        const val VERSION = 7
 
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(db: SupportSQLiteDatabase) {
@@ -142,6 +146,23 @@ abstract class NotesDatabase : RoomDatabase() {
             }
         }
 
+        val MIGRATION_6_7 = object : Migration(6, 7) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("""
+                    CREATE TABLE IF NOT EXISTS `attachments` (
+                        `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        `noteId` INTEGER NOT NULL,
+                        `filename` TEXT NOT NULL,
+                        `mimeType` TEXT NOT NULL,
+                        `dateAdded` INTEGER NOT NULL,
+                        `data` TEXT NOT NULL,
+                        FOREIGN KEY(`noteId`) REFERENCES `notes`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE
+                    )
+                """)
+                db.execSQL("CREATE INDEX IF NOT EXISTS `index_attachments_noteId` ON `attachments` (`noteId`)")
+            }
+        }
+
         // All SQL used in migrations must be compatible with min SDK version, API 21,
         // which uses SQLite 3.8.6! See https://stackoverflow.com/a/4377116/5288316
         val ALL_MIGRATIONS = arrayOf(
@@ -150,6 +171,7 @@ abstract class NotesDatabase : RoomDatabase() {
             MIGRATION_3_4,
             MIGRATION_4_5,
             MIGRATION_5_6,
+            MIGRATION_6_7,
         )
     }
 }

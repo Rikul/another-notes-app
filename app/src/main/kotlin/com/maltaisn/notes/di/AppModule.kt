@@ -21,12 +21,14 @@ import android.content.SharedPreferences
 import androidx.preference.PreferenceManager
 import com.maltaisn.notes.model.ArchiveExporter
 import com.maltaisn.notes.model.DefaultArchiveExporter
+import com.maltaisn.notes.model.DefaultAttachmentsRepository
 import com.maltaisn.notes.model.DefaultJsonManager
 import com.maltaisn.notes.model.DefaultLabelsRepository
 import com.maltaisn.notes.model.DefaultNotesRepository
 import com.maltaisn.notes.model.DefaultPrefsManager
 import com.maltaisn.notes.model.DefaultReminderAlarmManager
 import com.maltaisn.notes.model.JsonManager
+import com.maltaisn.notes.model.AttachmentsRepository
 import com.maltaisn.notes.model.LabelsRepository
 import com.maltaisn.notes.model.NotesRepository
 import com.maltaisn.notes.model.PrefsManager
@@ -52,6 +54,9 @@ abstract class AppModule {
 
     @Binds
     abstract fun bindNotesRepository(b: DefaultNotesRepository): NotesRepository
+
+    @Binds
+    abstract fun bindAttachmentsRepository(b: DefaultAttachmentsRepository): AttachmentsRepository
 
     @Binds
     abstract fun bindLabelsRepository(b: DefaultLabelsRepository): LabelsRepository

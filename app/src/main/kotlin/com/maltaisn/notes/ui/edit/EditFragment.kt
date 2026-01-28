@@ -283,6 +283,10 @@ class EditFragment : Fragment(), Toolbar.OnMenuItemClickListener, ConfirmDialog.
             navController.navigateSafe(NavGraphMainDirections.actionLabel(longArrayOf(noteId)))
         }
 
+        viewModel.showAttachmentsFragmentEvent.observeEvent(viewLifecycleOwner) { noteId ->
+            navController.navigateSafe(EditFragmentDirections.actionEditToAttachments(noteId))
+        }
+
         viewModel.showColorDialogEvent.observeEvent(viewLifecycleOwner) { color ->
             ColorPickerDialog.newInstance(color).show(childFragmentManager, ColorPickerDialog.TAG)
         }

@@ -90,6 +90,10 @@
             android:id="@+id/action_edit_to_edit_actions"
             app:destination="@id/dialog_edit_actions"
             />
+        <action
+            android:id="@+id/action_edit_to_attachments"
+            app:destination="@id/fragment_attachments"
+            />
     </fragment>
 
     <dialog
@@ -195,5 +199,14 @@
         android:id="@+id/action_settings"
         app:destination="@id/fragment_settings"
         />
+
+    <fragment
+        android:id="@+id/fragment_attachments"
+        android:name="com.maltaisn.notes.ui.attachments.AttachmentsFragment"
+        tools:layout="@layout/fragment_attachments">
+        <argument
+            android:name="note_id"
+            app:argType="long" />
+    </fragment>
 
 </navigation>

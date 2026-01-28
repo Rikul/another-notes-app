@@ -52,21 +52,32 @@ import javax.inject.Inject
 class DefaultJsonManager @Inject constructor(
     private val notesDao: NotesDao,
     private val labelsDao: LabelsDao,
+    private val attachmentsDao: AttachmentsDao,
+    private val attachmentsRepository: AttachmentsRepository,
     private val json: Json,
     private val reminderAlarmManager: ReminderAlarmManager,
     private val prefs: PrefsManager,
 ) : JsonManager {
 
     override suspend fun exportJsonData(): String {
-        // Map notes by ID, with labels
+        // Map notes by ID, with labels and attachments
         val notesMap = mutableMapOf<Long, NoteSurrogate>()
         val notesList = notesDao.getAll()
         for (noteWithLabels in notesList) {
             val note = noteWithLabels.note
+            val attachments = attachmentsDao.getByNoteIdSync(note.id)
+            val attachmentSurrogates = attachments.map { attachment ->
+                AttachmentSurrogate(
+                    filename = attachment.filename,
+                    mimeType = attachment.mimeType,
+                    dateAdded = attachment.dateAdded,
+                    data = attachment.data
+                )
+            }
             notesMap[note.id] = NoteSurrogate(note.type, note.title, note.content,
                 note.metadata, note.addedDate, note.lastModifiedDate,
                 note.rank, note.status, note.color, note.pinned, note.reminder,
-                noteWithLabels.labels.map { it.id })
+                noteWithLabels.labels.map { it.id }, attachmentSurrogates)
         }
 
         // Map labels by ID
@@ -253,6 +264,18 @@ class DefaultJsonManager @Inject constructor(
             }
 
             labelRefs += labelIds.map { LabelRef(noteId, it) }
+
+            // Import attachments for this note (including base64 data)
+            for (attachmentSurrogate in ns.attachments) {
+                val attachment = com.maltaisn.notes.model.entity.Attachment(
+                    noteId = noteId,
+                    filename = attachmentSurrogate.filename,
+                    mimeType = attachmentSurrogate.mimeType,
+                    dateAdded = attachmentSurrogate.dateAdded,
+                    data = attachmentSurrogate.data
+                )
+                attachmentsDao.insert(attachment)
+            }
         }
         labelsDao.insertRefs(labelRefs)
     }
@@ -297,6 +320,18 @@ class DefaultJsonManager @Inject constructor(
  * adding [labels] to store label references.
  */
 @Serializable
+private data class AttachmentSurrogate(
+    @SerialName("filename")
+    val filename: String,
+    @SerialName("mimeType")
+    val mimeType: String,
+    @SerialName("dateAdded")
+    val dateAdded: Date,
+    @SerialName("data")
+    val data: String, // Base64 encoded file data
+)
+
+@Serializable
 private data class NoteSurrogate(
     @SerialName("type")
     val type: NoteType,
@@ -322,6 +357,8 @@ private data class NoteSurrogate(
     val reminder: Reminder? = null,
     @SerialName("labels")
     val labels: List<Long> = emptyList(),
+    @SerialName("attachments")
+    val attachments: List<AttachmentSurrogate> = emptyList(),
 )
 
 @Serializable

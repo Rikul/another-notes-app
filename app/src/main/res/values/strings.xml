@@ -23,6 +23,16 @@
     <string name="app_name_short">Notes</string>
 
     <string name="action_archive">Archive</string>
+    <string name="action_attachments">Attachments</string>
+    <string name="action_add_attachment">Add Attachment</string>
+    <string name="no_attachments">No attachments</string>
+    <string name="delete_attachment_message">Are you sure you want to delete?</string>
+    <string name="action_yes">Yes</string>
+    <string name="attachment_max_size_error">Maximum file size must be 5 MB</string>
+    <string name="attachment_no_app_error">No app found to open this file</string>
+    <string name="attachment_file_not_found">File not found</string>
+    <string name="attachment_error_adding">Error adding attachment</string>
+    <string name="attachment_error_deleting">Error deleting attachment</string>
     <string name="action_cancel">Cancel</string>
     <string name="action_clear">Clear</string>
     <string name="action_color">Change color</string>

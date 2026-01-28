@@ -42,4 +42,7 @@ object DatabaseModule {
 
     @Provides
     fun providesLabelsDao(database: NotesDatabase) = database.labelsDao()
+
+    @Provides
+    fun providesAttachmentsDao(database: NotesDatabase) = database.attachmentsDao()
 }

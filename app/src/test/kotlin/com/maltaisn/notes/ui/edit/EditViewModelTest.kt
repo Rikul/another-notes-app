@@ -175,6 +175,7 @@ class EditViewModelTest {
             pin = AVAILABLE,
             share = AVAILABLE,
             copy = AVAILABLE,
+            attachments = AVAILABLE,
         ), viewModel.editActionsAvailability.getOrAwaitValue())
 
         assertEquals(listOf(
@@ -234,6 +235,7 @@ class EditViewModelTest {
             pin = AVAILABLE,
             share = AVAILABLE,
             copy = AVAILABLE,
+            attachments = AVAILABLE,
         ), viewModel.editActionsAvailability.getOrAwaitValue())
 
         assertEquals(NOTE1_ITEMS, viewModel.editItems.getOrAwaitValue())
@@ -257,6 +259,7 @@ class EditViewModelTest {
             uncheckAll = AVAILABLE,
             deleteChecked = AVAILABLE,
             sortItems = AVAILABLE,
+            attachments = AVAILABLE,
         ), viewModel.editActionsAvailability.getOrAwaitValue())
 
         assertEquals(NOTE2_ITEMS, viewModel.editItems.getOrAwaitValue())
@@ -484,6 +487,7 @@ class EditViewModelTest {
             pin = AVAILABLE,
             share = AVAILABLE,
             copy = AVAILABLE,
+            attachments = AVAILABLE,
         ), viewModel.editActionsAvailability.getOrAwaitValue())
 
         assertLiveDataEventSent(viewModel.messageEvent, EditMessage.RESTORED_NOTE)
@@ -517,6 +521,7 @@ class EditViewModelTest {
             copy = AVAILABLE,
             uncheckAll = AVAILABLE,
             deleteChecked = AVAILABLE,
+            attachments = AVAILABLE,
             sortItems = AVAILABLE,
         ), viewModel.editActionsAvailability.getOrAwaitValue())
 
@@ -1297,6 +1302,7 @@ class EditViewModelTest {
             delete = AVAILABLE,
             unpin = AVAILABLE,
             share = AVAILABLE,
+            attachments = AVAILABLE,
             copy = AVAILABLE,
             sortItems = AVAILABLE,
         ), viewModel.editActionsAvailability.getOrAwaitValue())
